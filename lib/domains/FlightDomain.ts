@@ -1,18 +1,6 @@
 import { postgresConnectionService } from "../services/PostgresConnectionService.ts";
-
-enum TripClassCode { ECONOMY, BUSINESS, FIRST_CLASS };
-
-interface IFlightDomainProperties {
-  departureDate: string;
-  destination: string;
-  distance: number;
-  duration: number;
-  md5Hash: string;
-  origin: string;
-  priceUsd: number;
-  returnDate: string;
-  tripClassCode: TripClassCode;
-};
+import { TripClassCode } from "../interfaces/interfaces.ts";
+import { IFlightDomainProperties } from "../interfaces/interfaces.ts";
 
 export class FlightDomain {
     departureDate: string;

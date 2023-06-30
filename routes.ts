@@ -1,4 +1,4 @@
-import { facade } from "./lib/facade/Facade.js";
+import { facade } from "./lib/facade/Facade.ts";
 
 export const setupRoutes = (app) => {
   app.get('/flights', async (req, res) => {

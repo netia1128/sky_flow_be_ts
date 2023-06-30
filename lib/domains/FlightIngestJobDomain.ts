@@ -1,9 +1,15 @@
-import { FlightBuilder } from "../builders/FlightBuilder.js";
-import { fetchFlightDataService } from "../services/fetchflightDataService.js";
-import { FlightDomain } from "./FlightDomain.js";
-import { logger } from '../logger/Logger.js';
+import { FlightBuilder } from "../builders/FlightBuilder.ts";
+import { fetchFlightDataService } from "../services/fetchflightDataService.ts";
+import { FlightDomain } from "./FlightDomain.ts";
+import { logger } from '../logger/Logger.ts';
+import { IFlightDomainProperties } from "../interfaces/interfaces.ts";
 
 export class FlightIngestJobDomain {
+  existingFutureFlights: string[];
+  incomingFlights: string[];
+  success: (boolean | null);
+  errorCode: (number | null);
+
   constructor() {
     this.existingFutureFlights = [];
     this.incomingFlights = [];
@@ -43,7 +49,7 @@ export class FlightIngestJobDomain {
     }
   }
 
-  buildFlight(flight) {
+  buildFlight(flight: {}) {
     try {
       return new FlightBuilder()
         .withDepartureDate(flight)
@@ -63,7 +69,7 @@ export class FlightIngestJobDomain {
     }
   }
 
-  async insertFlight(flightBuilderObject) {
+  async insertFlight(flightBuilderObject: IFlightDomainProperties) {
     try {
       await new FlightDomain(flightBuilderObject).insertFlight();
     } catch (err) {

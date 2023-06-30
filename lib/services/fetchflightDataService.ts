@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { logger } from '../logger/Logger.js';
+import { logger } from '../logger/Logger.ts';
 
 // Documentation for the source API can be found here:
 // https://travelpayouts.github.io/slate/#about-api

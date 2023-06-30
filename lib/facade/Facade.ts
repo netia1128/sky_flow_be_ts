@@ -1,5 +1,5 @@
-import { FlightIngestJobDomain } from '../domains/FlightIngestJobDomain.js';
-import { FlightDomain } from '../domains/FlightDomain.js';
+import { FlightIngestJobDomain } from '../domains/FlightIngestJobDomain.ts';
+import { FlightDomain } from '../domains/FlightDomain.ts';
 
 class Facade {
   ingestFlights() {

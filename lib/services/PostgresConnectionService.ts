@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { logger } from '../logger/Logger.js';
+import { logger } from '../logger/Logger.ts';
 
 class PostgresConnectionService {
   postgresPool: {
