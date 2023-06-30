@@ -1,6 +1,6 @@
 import { jest } from "@jest/globals";
-import { FlightDomain } from '../../lib/domains/FlightDomain.js';
-import { postgresConnectionService } from '../../lib/services/PostgresConnectionService.js';
+import { FlightDomain } from '../../lib/domains/FlightDomain.ts';
+import { postgresConnectionService } from '../../lib/services/PostgresConnectionService.ts';
 
 let flightDomain;
 let flightBuilder;

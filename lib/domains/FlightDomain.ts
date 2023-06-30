@@ -1,21 +1,55 @@
-import { postgresConnectionService } from "../services/PostgresConnectionService.js";
+import { postgresConnectionService } from "../services/PostgresConnectionService.ts";
+
+enum TripClassCode { ECONOMY, BUSINESS, FIRST_CLASS };
+
+interface IFlightDomainProperties {
+  departureDate: string;
+  destination: string;
+  distance: number;
+  duration: number;
+  md5Hash: string;
+  origin: string;
+  priceUsd: number;
+  returnDate: string;
+  tripClassCode: TripClassCode;
+};
 
 export class FlightDomain {
-  constructor(flightBuilderObject) {
-    this.departureDate = flightBuilderObject.departureDate;
-    this.destination = flightBuilderObject.destination;
-    this.distance = flightBuilderObject.distance;
-    this.duration = flightBuilderObject.duration;
-    this.md5Hash = flightBuilderObject.md5Hash;
-    this.origin = flightBuilderObject.origin;
-    this.priceUsd = flightBuilderObject.priceUsd;
-    this.returnDate = flightBuilderObject.returnDate;
-    this.tripClassCode = flightBuilderObject.tripClassCode;
+    departureDate: string;
+    destination: string;
+    distance: number;
+    duration: number;
+    md5Hash: string;
+    origin: string;
+    priceUsd: number;
+    returnDate: string;
+    tripClassCode: TripClassCode;
+
+  constructor({  
+    departureDate,
+    destination,
+    distance,
+    duration,
+    md5Hash,
+    origin,
+    priceUsd,
+    returnDate,
+    tripClassCode,
+  }: IFlightDomainProperties) {
+    this.departureDate = departureDate;
+    this.destination = destination;
+    this.distance = distance;
+    this.duration = duration;
+    this.md5Hash = md5Hash;
+    this.origin = origin;
+    this.priceUsd = priceUsd;
+    this.returnDate = returnDate;
+    this.tripClassCode = tripClassCode;
   }
 
   static selectFlights() {
     try {
-      const sql = `
+      const sql: string = `
         SELECT 
         f.id,
         f.price_usd as "priceUsd", 
@@ -43,7 +77,7 @@ export class FlightDomain {
 
   async insertFlight() {
     try {
-      const sql = `
+      const sql: string = `
         INSERT INTO flights 
         (
           departure_date,
@@ -70,7 +104,7 @@ export class FlightDomain {
         ;
       `;
   
-      const values = [
+      const values: (string | number)[] = [
         this.departureDate,
         this.destination,
         this.distance,

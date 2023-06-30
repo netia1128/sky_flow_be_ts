@@ -2,7 +2,7 @@
 
 ## About This Service
 This is a simple Node.js backend application that ingests flight data from TravelPayouts API and allows users to retrieve that data.
-You can view the corresponding frontend application here: https://github.com/netia1128/sky_flow_be
+You can view the corresponding frontend application here: https://github.com/netia1128/sky_flow_fe
 This service was created as a short but sweet example of my coding style. 
 
 ## Run Locally

@@ -2,17 +2,25 @@ import pg from 'pg';
 import { logger } from '../logger/Logger.js';
 
 class PostgresConnectionService {
+  postgresPool: {
+    host: string;
+    port: number | undefined;
+    user: string;
+    password: string;
+    database: string;
+  };
+
   constructor() {
     this.postgresPool = new pg.Pool({
       host: process.env.POSTGRES_CONNECTION_STRING,
-      port: process.env.POSTGRES_PORT,
+      port: parseInt(process.env.POSTGRES_PORT, 10),
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE
     });
   }
 
-  async runQuery(SQL, values) {
+  async runQuery(SQL: string, values?: (string | number)[]) {
     try {
       const result = (await this.postgresPool.query(SQL, values)).rows;
       return result;
